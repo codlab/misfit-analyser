@@ -1,25 +1,22 @@
-package eu.codlab.fitit;
+package eu.codlab.fitit.ui.activities;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+
+import eu.codlab.fitit.R;
+import eu.codlab.fitit.ui.NavigationDrawerFragment;
 
 
-public class MainActivity extends ActionBarActivity
+public class BaseActivity extends SystemFittableActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -35,7 +32,6 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -45,6 +41,33 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        setInsets();
+        setToolbarAsNavigation();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mNavigationDrawerFragment.isDrawerOpen()) {
+            mNavigationDrawerFragment.toggle();
+        } else {
+            finish();
+        }
+    }
+
+    public void setToolbarAsNavigation() {
+        getToolbar().setNavigationIcon(R.drawable.ic_menu_white);
+        getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNavigationDrawerFragment.toggle();
+            }
+        });
+
+    }
+
+    public void setToolbarAsBack() {
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -141,7 +164,7 @@ public class MainActivity extends ActionBarActivity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
+            ((BaseActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }

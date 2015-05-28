@@ -10,7 +10,10 @@
 
         <item name="android:windowActionBar">false</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
     </style>
 
     <style name="AppThemeStandard" parent="Theme.AppCompat.Light.NoActionBar">
@@ -20,9 +23,4 @@
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
         <item name="android:textColorPrimary">@color/black</item>
     </style>
-
-    <style name="DashboardTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:textColorSecondary">@color/white</item>
-    </style>
-
 </resources>

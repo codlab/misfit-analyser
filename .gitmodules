@@ -1,3 +1,6 @@
 [submodule "libraries/misfit-sdk"]
 	path = libraries/misfit-sdk
 	url = https://github.com/codlab/misfit-sdk.git
+[submodule "libraries/daogenerator-android"]
+	path = libraries/daogenerator-android
+	url = git@bitbucket.org:lduparc/daogenerator-android.git

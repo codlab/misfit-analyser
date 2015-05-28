@@ -1,5 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+ext.daogenerator_schema_path = "$rootProject.projectDir/app/src/main/assets/schema.json"
+ext.daogenerator_generated_path = "$rootProject.projectDir/app/src/main/java-gen"
+
 buildscript {
     repositories {
         jcenter()
